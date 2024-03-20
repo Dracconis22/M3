@@ -1,0 +1,64 @@
+* { /*El * es el selector general*/
+    box-sizing: border-box; /*Retira los bordes que vienen por defecto*/
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2rem;
+    min-height: 100vh; /*La altura de 100vh es para que abarque el 100% de toda la pantalla del explorador. VH significa viewport height (altura del dispositivo). También funciona como porcentaje, especificar 10vh es equivalente a ocupar 10% de la altura visible de la pantalla.*/
+    padding: 20px;
+}
+
+.grid-container > * {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.grid-container {
+    display: grid; /*display es cómo se verá en el explorador o pantalla*/
+    gap: 20px; /*Agrega un espaciado entre las items o "tarjetas"*/
+    grid-template: /*1ro design mobile*/
+        "header" 200px
+        "navbar" 50px
+        "main" 
+        "footer"100px;
+   
+    .header { 
+        grid-area: header;
+        background-color: #FFD7D7;
+    }
+
+    .navbar {
+        grid-area: navbar;
+        background-color: #EFD6E3;
+    }
+
+    .main {
+        grid-area: main;
+        background-color: #DBD1EE;
+    }
+
+    .footer {
+        grid-area: footer;
+        background-color: #C2CBF7;
+    }
+    @media (min-width:768px) { /*Acá se definió el ancho mínimo de 768*/
+        grid-template: /*2do design tablet*/
+            "header navbar" 50px
+            "header navbar" 50px
+            "main main" auto
+            "footer footer" 100px//*La / va a indicar que apartir de ese punto se va a definir el ancho de cada "barrita"*/
+            200px auto; /*200px de ancho la columna izq y relleno automático para la derecha*/
+    }
+    @media (min-width:992px) { /*Acá se definió el ancho mínimo de 768*/
+        grid-template: /*3ro design desktop*/
+            "header navbar navbar" 100px
+            "main main main" auto
+            "footer footer footer" 100px/
+            200px auto 200px; /*Ancho de columnas: 200px columna 1, automático columna 2, 200px columna 3*/
+    }
+}
